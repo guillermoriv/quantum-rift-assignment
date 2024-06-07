@@ -24,6 +24,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001";
+
 const formSchema = z.object({
   name: z.string().min(2),
   price: z.preprocess(Number, z.number().positive()),
@@ -55,15 +57,12 @@ function Index() {
 
   const { data, isLoading } = useQuery<{ data: Item[] }>({
     queryKey: ["items"],
-    queryFn: () =>
-      fetch(`${import.meta.env.VITE_API_BASE_URL}/items`).then((res) =>
-        res.json(),
-      ),
+    queryFn: () => fetch(`${BASE_URL}/items`).then((res) => res.json()),
   });
 
   const mutation = useMutation({
     mutationFn: (item: Item) =>
-      fetch(`${import.meta.env.VITE_API_BASE_URL}/items`, {
+      fetch(`${BASE_URL}/items`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
