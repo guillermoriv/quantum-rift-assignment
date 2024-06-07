@@ -163,7 +163,7 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=3001
-      - CORS=*
+      - CORS_ORIGIN=*
   client:
     build:
       context: ./client
@@ -171,7 +171,7 @@ services:
       - "3000:80"
     environment:
       - NODE_ENV=production
-      - API_BASE_URL=http://server:3001
+      - VITE_API_BASE_URL=http://server:3001
     depends_on:
       - server
 ```
@@ -186,5 +186,3 @@ docker-compose up --build
 
 - The frontend will be available at `http://localhost:3000`
 - The backend will be available at `http://localhost:3001`
-
-Ensure that the environment variables in your `.env` files are correctly set up before building the Docker images. The `API_BASE_URL` in the `docker-compose.yml` file points to the backend service. Make sure this URL is correctly configured if your services run on different hosts or if you have a different setup.
