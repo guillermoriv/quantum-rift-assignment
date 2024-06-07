@@ -18,6 +18,7 @@ This repository is a monorepo containing both the frontend and backend of the ap
    - [Setup and Running](#setup-and-running-1)
 
 3. [Prerequisites](#prerequisites)
+4. [Running with Docker Compose](#running-with-docker-compose)
 
 ---
 
@@ -143,3 +144,49 @@ node -v
 ```
 
 Ensure that both the `server` and `client` directories have their dependencies installed and environment variables set before starting the applications.
+
+## Running with Docker Compose
+
+To run both the frontend and backend using Docker Compose, follow these steps:
+
+1. Ensure that you have Docker and Docker Compose installed. You can download them from [here](https://docs.docker.com/get-docker/).
+
+2. Createa a `docker-compose.yml` file in the root directory with the following content:
+
+```yaml
+version: "3.8"
+
+services:
+  server:
+    build:
+      context: ./server
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - CORS=*
+  client:
+    build:
+      context: ./client
+    ports:
+      - "3000:80"
+    environment:
+      - NODE_ENV=production
+      - API_BASE_URL=http://server:3001
+    depends_on:
+      - server
+```
+
+3. Navigate to the root of your project directory where the docker-compose.yml file is located and run:
+
+```bash
+docker-compose up --build
+```
+
+4. Access the application:
+
+- The frontend will be available at `http://localhost:3000`
+- The backend will be available at `http://localhost:3001`
+
+Ensure that the environment variables in your `.env` files are correctly set up before building the Docker images. The `API_BASE_URL` in the `docker-compose.yml` file points to the backend service. Make sure this URL is correctly configured if your services run on different hosts or if you have a different setup.
