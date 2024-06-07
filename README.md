@@ -151,11 +151,9 @@ To run both the frontend and backend using Docker Compose, follow these steps:
 
 1. Ensure that you have Docker and Docker Compose installed. You can download them from [here](https://docs.docker.com/get-docker/).
 
-2. Createa a `docker-compose.yml` file in the root directory with the following content:
+2. Create a `docker-compose.yml` file (if not created) in the root directory with the following content:
 
 ```yaml
-version: "3.8"
-
 services:
   server:
     build:

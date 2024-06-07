@@ -23,6 +23,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-# Docker Compose
-docker-compose.yml
