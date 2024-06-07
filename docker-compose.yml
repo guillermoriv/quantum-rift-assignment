@@ -7,7 +7,7 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=3001
-      - CORS=*
+      - CORS_ORIGIN=*
   client:
     build:
       context: ./client
@@ -15,6 +15,6 @@ services:
       - "3000:80"
     environment:
       - NODE_ENV=production
-      - API_BASE_URL=http://server:3001
+      - VITE_API_BASE_URL=http://server:3001
     depends_on:
       - server
