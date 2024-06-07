@@ -1,0 +1,29 @@
+{
+  "name": "backend-quantum",
+  "version": "1.0.0",
+  "description": "backend for quantum rift labs",
+  "main": "index.ts",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch --clear-screen=false index.ts",
+    "start": "node dist/index.js",
+    "build": "tsc"
+  },
+  "author": "guillermoriv",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "helmet": "^7.1.0",
+    "http-status-codes": "^2.3.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.2",
+    "tsx": "^4.12.0",
+    "typescript": "^5.4.5"
+  }
+}
